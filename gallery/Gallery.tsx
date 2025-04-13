@@ -21,7 +21,7 @@ const Gallery = () => {
     },[]);
 
     return (
-        <ScrollView contentContainerStyle={{flexDirection:'row', flexWrap: 'wrap', justifyContent: 'center', maxWidth: 500}}>
+        <ScrollView contentContainerStyle={{flexDirection:'row', flexWrap: 'wrap', justifyContent: 'center'}}>
             {!loading && Object.values(urls).map((photo: string[]) => (
                 <Photo part_urls={photo} key={String(uuid.v4())}/>
             ))}
