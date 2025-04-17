@@ -44,7 +44,7 @@ const Photo: React.FC<Props> = ({part_urls}) => {
                         let reader = new FileReader();
                         reader.readAsDataURL(await response.data);
                         reader.onloadend = () => addImagePart(parts, reader, index);
-                    })
+                    });
                 })
             );
         }
@@ -52,24 +52,49 @@ const Photo: React.FC<Props> = ({part_urls}) => {
         fetchImage();
     },[]);
 
-    return (
-        <View style={{width: 120, height: 120, margin: 1}}>
-            {loading && (
+    if (loading) {
+        return (
+            <View style={{width: 120, height: 120, margin: 1}}>
                 <View style={styles.container}>
                     <ActivityIndicator  size="small" />
                 </View>
-            )}
+            </View>
+        )
+    }
+    else {
+        return (<View style={{width: 120, height: 120, margin: 1}}>
             {photoBuffer !== "" && (
                 <Image
                     style={{width: 120, height: 120, margin: 1}}
                     source={{uri: photoBuffer}}
                     contentFit="cover"
                     transition={1000}
-                    onLoadEnd={handleLoadEnd}
+                    onLoad={handleLoadEnd}
+                    key={uuid.v4()}
                 />
             )}
-        </View>
-    );
+        </View>)
+    }
+
+    // return (
+    //     <View style={{width: 120, height: 120, margin: 1}}>
+    //         {loading && (
+    //             <View style={styles.container}>
+    //                 <ActivityIndicator  size="small" />
+    //             </View>
+    //         )}
+    //         {photoBuffer !== "" && (
+    //             <Image
+    //                 style={{width: 120, height: 120, margin: 1}}
+    //                 source={{uri: photoBuffer}}
+    //                 contentFit="cover"
+    //                 transition={1000}
+    //                 onLoad={handleLoadEnd}
+    //                 key={uuid.v4()}
+    //             />
+    //         )}
+    //     </View>
+    // );
 };
 
 

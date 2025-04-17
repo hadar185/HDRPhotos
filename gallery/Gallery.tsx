@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {ScrollView} from "react-native";
+import {ScrollView, View} from "react-native";
 import Photo from "./Photo";
 import uuid from 'react-native-uuid';
 
@@ -21,48 +21,13 @@ const Gallery = () => {
     },[]);
 
     return (
-        <ScrollView contentContainerStyle={{flexDirection:'row', flexWrap: 'wrap', justifyContent: 'center', maxWidth: 500}}>
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-            {!loading && Object.values(urls).map((photo: string[]) => (
-                <Photo part_urls={photo} key={String(uuid.v4())}/>
-            ))}
-
-        </ScrollView>
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center", alignContent: "center"}}>
+            <ScrollView contentContainerStyle={{flexDirection:'row', flexWrap: 'wrap', justifyContent: "flex-start", padding: 5}}>
+                {!loading && Object.values(urls).map((photo: string[]) => (
+                    <Photo part_urls={photo} key={uuid.v4()}/>
+                ))}
+            </ScrollView>
+        </View>
     );
 };
 export default Gallery;
