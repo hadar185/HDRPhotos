@@ -16,10 +16,6 @@ const Photo: React.FC<Props> = ({part_urls}) => {
     const [loading, setLoading] = useState(true);
     const [photoBuffer, setPhotoBuffer] = useState("");
 
-    const handleLoadEnd = () => {
-        setLoading(false);
-    };
-
 
     useEffect(() => {
         const addImagePart = (parts: Buffer[], reader: FileReader, index: number) => {
@@ -31,6 +27,7 @@ const Photo: React.FC<Props> = ({part_urls}) => {
 
             if (parts.length === part_urls.length && !hasUninitializedValue(parts)) {
                 setPhotoBuffer(prefix + Buffer.concat(parts).toString('base64'));
+                setLoading(false);
             }
         }
 
@@ -54,7 +51,7 @@ const Photo: React.FC<Props> = ({part_urls}) => {
 
     if (loading) {
         return (
-            <View style={{width: 120, height: 120, margin: 1}}>
+            <View style={{width: 125, height: 125, margin: 1}}>
                 <View style={styles.container}>
                     <ActivityIndicator  size="small" />
                 </View>
@@ -62,14 +59,13 @@ const Photo: React.FC<Props> = ({part_urls}) => {
         )
     }
     else {
-        return (<View style={{width: 120, height: 120, margin: 1}}>
+        return (<View style={{width: 125, height: 125, margin: 1}}>
             {photoBuffer !== "" && (
                 <Image
-                    style={{width: 120, height: 120, margin: 1}}
+                    style={{width: 125, height: 125, margin: 1}}
                     source={{uri: photoBuffer}}
                     contentFit="cover"
                     transition={1000}
-                    onLoad={handleLoadEnd}
                     key={uuid.v4()}
                 />
             )}
